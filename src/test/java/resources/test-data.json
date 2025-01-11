@@ -1,0 +1,34 @@
+[
+  {
+    "isbn": "9780261103573",
+    "expectedUrl": "https://openlibrary.org/books/OL32559371M/The_Fellowship_of_the_Ring",
+    "expectedKey": "/books/OL32559371M",
+    "expectedTitle": "The Fellowship of the Ring",
+    "expectedSubtitle": "The Lord of the Rings, Part I",
+    "expectedAuthorUrl": "[https://openlibrary.org/authors/OL26320A/J.R.R._Tolkien]",
+    "expectedAuthorName": "[J.R.R. Tolkien]",
+    "expectedNumberOfPages": 407,
+    "expectedPagination": "xxiii, 407",
+    "expectedIdentifiersIsbn13": "[9780261103573]",
+    "expectedIdentifiersOpenLibrary": "[OL32559371M]",
+    "expectedClassifications": "[PR6039.O32F4 2011]",
+    "expectedPublishers": "[HarperCollinsPublishers]",
+    "expectedPublishDate": "2011"
+  },
+  {
+    "isbn": "9780261103580",
+    "expectedUrl": "https://openlibrary.org/books/OL10236418M/The_Two_Towers",
+    "expectedKey": "/books/OL10236418M",
+    "expectedTitle": "The Two Towers",
+    "expectedSubtitle": "being the second part of the Lord of the Rings",
+    "expectedAuthorUrl": "[https://openlibrary.org/authors/OL26320A/J.R.R._Tolkien]",
+    "expectedAuthorName": "[J.R.R. Tolkien]",
+    "expectedNumberOfPages": 352,
+    "expectedPagination": "x, 725p.",
+    "expectedIdentifiersIsbn13": "[9780261103580]",
+    "expectedIdentifiersOpenLibrary": "[OL10236418M]",
+    "expectedClassifications": null,
+    "expectedPublishers": "[HarperCollins Publishers]",
+    "expectedPublishDate": "1997"
+  }
+]

@@ -1,4 +1,6 @@
-import Utility.BookUtils;
+package UnitTest;
+
+import utility.BookUtils;
 import org.mockito.Mockito;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -46,6 +48,18 @@ public class getBookDetailsAsStringTest {
         ));
 
     }
+    @Test
+    void testgetBookDetailsAsStringBook_Title_WithOnlyWhitespace() {
+        // Space title
+
+        assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
+                " ",
+                "Subtitle",
+                List.of("Author"),
+                2025
+        ));
+
+    }
 
     @Test
     void testgetBookDetailsAsStringBook_NullAuthors() {
@@ -68,6 +82,18 @@ public class getBookDetailsAsStringTest {
                 "Title",
                 "Subtitle",
                 List.of(""),
+                2025
+        ));
+
+    }
+    @Test
+    void testgetBookDetailsAsStringBook_Author_WithOnlyWhitespace() {
+        // Empty author
+
+        assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
+                "Title",
+                "Subtitle",
+                List.of(" "),
                 2025
         ));
 
@@ -115,7 +141,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsString_ValidBook_HasSubtitle_ManyAuthors() {
+    void testgetBookDetailsAsString_ValidBook_HasSubtitle_TwoAuthors() {
         // Valid input with subtitle and many authors
 
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
@@ -129,6 +155,23 @@ public class getBookDetailsAsStringTest {
         );
 
         assertEquals("Title: Subtitle by Author1, Author2 (2025)", result);
+
+    }
+    @Test
+    void testgetBookDetailsAsString_ValidBook_HasSubtitle_ManyAuthors() {
+        // Valid input with subtitle and many authors
+
+        when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
+
+
+        String result = bookUtils.getBookDetailsAsString(
+                "Title",
+                "Subtitle",
+                List.of("Author1", "Author2","Author3"),
+                2025
+        );
+
+        assertEquals("Title: Subtitle by Author1, Author2, Author3 (2025)", result);
 
     }
 
@@ -146,6 +189,20 @@ public class getBookDetailsAsStringTest {
         assertEquals("Title by Author (2025)", result);
 
     }
+    @Test
+    void testgetBookDetailsAsString_ValidBook_EmptySubtitle_TwoAuthors() {
+        // Valid input with empty subtitle and two authors
+        when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
+
+        String result = bookUtils.getBookDetailsAsString(
+                "Title",
+                "",
+                List.of("Author1","Author2"),
+                2025
+        );
+        assertEquals("Title by Author1, Author2 (2025)", result);
+
+    }
 
     @Test
     void testgetBookDetailsAsString_ValidBook_EmptySubtitle_ManyAuthors() {
@@ -155,10 +212,10 @@ public class getBookDetailsAsStringTest {
         String result = bookUtils.getBookDetailsAsString(
                 "Title",
                 "",
-                List.of("Author1", "Author2"),
+                List.of("Author1", "Author2", "Author3"),
                 2025
         );
-        assertEquals("Title by Author1, Author2 (2025)", result);
+        assertEquals("Title by Author1, Author2, Author3 (2025)", result);
 
     }
 
@@ -175,6 +232,19 @@ public class getBookDetailsAsStringTest {
         );
         assertEquals("Title by Author (2025)", result);
     }
+    @Test
+    void testgetBookDetailsAsString_ValidBook_NullSubtitle_TwoAuthors() {
+        // Valid input with null subtitle and two authors
+        when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
+
+        String result = bookUtils.getBookDetailsAsString(
+                "Title",
+                null,
+                List.of("Author1","Author2"),
+                2025
+        );
+        assertEquals("Title by Author1, Author2 (2025)", result);
+    }
 
     @Test
     void testgetBookDetailsAsString_ValidBook_NullSubtitle_ManyAuthors() {
@@ -184,10 +254,10 @@ public class getBookDetailsAsStringTest {
         String result = bookUtils.getBookDetailsAsString(
                 "Title",
                 null,
-                List.of("Author1", "Author2"),
+                List.of("Author1", "Author2", "Author3"),
                 2025
         );
-        assertEquals("Title by Author1, Author2 (2025)", result);
+        assertEquals("Title by Author1, Author2, Author3 (2025)", result);
     }
 
     @Test

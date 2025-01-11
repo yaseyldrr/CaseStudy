@@ -1,5 +1,7 @@
 package ApiTest;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -21,9 +23,10 @@ import static io.restassured.RestAssured.*;
 
 public class TestGetBookDetailsWithISBN {
 
+    TestData testData;
     private RequestSpecification requestSpecification;
     private ResponseSpecification responseSpecification;
-    TestData testData;
+
 
     //9780261103573
     //https://openlibrary.org/api/books?bibkeys=ISBN:{{ISBN}}&format=json&jscmd=data
@@ -42,6 +45,8 @@ public class TestGetBookDetailsWithISBN {
 
     @BeforeTest
     void setUp() throws IOException {
+
+
         ObjectMapper objectMapper = new ObjectMapper();
         TestData[] testDataArray = objectMapper.readValue(new File("src/test/java/resources/test-data.json"), TestData[].class);
         testData = testDataArray[0];
@@ -62,6 +67,7 @@ public class TestGetBookDetailsWithISBN {
 
     @Test(dataProvider = "testDataProvider")
     public void testGetBookDetails(TestData testData) {
+
         ValidatableResponse response =
                 given()
                         .spec(requestSpecification)
@@ -72,6 +78,7 @@ public class TestGetBookDetailsWithISBN {
 
                         .then()
                         .spec(responseSpecification);
+
 
         Map<String, Object> responseMap = response.extract().jsonPath().getMap("$");
 
@@ -106,7 +113,10 @@ public class TestGetBookDetailsWithISBN {
         verifyField("Publishers", publishers, testData.expectedPublishers);
         verifyField("Publish Date", publishDate, testData.expectedPublishDate);
 
+
     }
+
+
 }
 
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd">
+<suite name="My Suit">
+    <test name="My Test 1">
+        <classes>
+            <class name="ApiTest.TestGetBookDetailsWithISBN"></class>
+        </classes>
+    </test>
+</suite>

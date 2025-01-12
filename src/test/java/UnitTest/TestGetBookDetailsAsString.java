@@ -11,7 +11,7 @@ import static org.mockito.Mockito.*;
 import static org.testng.Assert.assertThrows;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class getBookDetailsAsStringTest {
+public class TestGetBookDetailsAsString {
 
     private BookUtils bookUtils;
     private BookUtils.BookRepository mockBookRepository;
@@ -20,12 +20,11 @@ public class getBookDetailsAsStringTest {
     @BeforeTest
     void setUp() {
         mockBookRepository = Mockito.mock(BookUtils.BookRepository.class);
-        bookUtils = new BookUtils(mockBookRepository); // dependency injection
+        bookUtils = new BookUtils(mockBookRepository);
     }
 
     @Test
-    void testgetBookDetailsAsStringBook_NullTitle() {
-        // Null title
+    void testGetBookDetailsAsStringBook_NullTitle() {
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 null,
@@ -37,8 +36,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsStringBook_EmptyTitle() {
-        // Empty title
+    void testGetBookDetailsAsStringBook_EmptyTitle() {
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 "",
@@ -49,8 +47,7 @@ public class getBookDetailsAsStringTest {
 
     }
     @Test
-    void testgetBookDetailsAsStringBook_Title_WithOnlyWhitespace() {
-        // Space title
+    void testGetBookDetailsAsStringBook_Title_WithOnlyWhitespace() {
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 " ",
@@ -62,8 +59,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsStringBook_NullAuthors() {
-        // Null author
+    void testGetBookDetailsAsStringBook_NullAuthors() {
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 "Title",
@@ -75,8 +71,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsStringBook_EmptyAuthors() {
-        // Empty author
+    void testGetBookDetailsAsStringBook_EmptyAuthors() {
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 "Title",
@@ -87,8 +82,7 @@ public class getBookDetailsAsStringTest {
 
     }
     @Test
-    void testgetBookDetailsAsStringBook_Author_WithOnlyWhitespace() {
-        // Empty author
+    void testGetBookDetailsAsStringBook_Author_WithOnlyWhitespace() {
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 "Title",
@@ -101,7 +95,6 @@ public class getBookDetailsAsStringTest {
 
     @Test
     void testgetBookDetailsAsStringBook_ZeroYear() {
-        // Zero year
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 "Title",
@@ -113,8 +106,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsStringBook_NegativeYear() {
-        // Negative year
+    void testGetBookDetailsAsStringBook_NegativeYear() {
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 "Title",
@@ -126,8 +118,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsString_ValidBook_HasSubtitle_AnAuthor() {
-        // Valid input with subtitle and an author
+    void testGetBookDetailsAsString_ValidBook_HasSubtitle_AnAuthor() {
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
 
         String result = bookUtils.getBookDetailsAsString(
@@ -141,8 +132,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsString_ValidBook_HasSubtitle_TwoAuthors() {
-        // Valid input with subtitle and many authors
+    void testGetBookDetailsAsString_ValidBook_HasSubtitle_TwoAuthors() {
 
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
 
@@ -158,8 +148,7 @@ public class getBookDetailsAsStringTest {
 
     }
     @Test
-    void testgetBookDetailsAsString_ValidBook_HasSubtitle_ManyAuthors() {
-        // Valid input with subtitle and many authors
+    void testGetBookDetailsAsString_ValidBook_HasSubtitle_ManyAuthors() {
 
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
 
@@ -176,8 +165,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsString_ValidBook_EmptySubtitle_AnAuthor() {
-        // Valid input with empty subtitle and an author
+    void testGetBookDetailsAsString_ValidBook_EmptySubtitle_AnAuthor() {
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
 
         String result = bookUtils.getBookDetailsAsString(
@@ -190,8 +178,7 @@ public class getBookDetailsAsStringTest {
 
     }
     @Test
-    void testgetBookDetailsAsString_ValidBook_EmptySubtitle_TwoAuthors() {
-        // Valid input with empty subtitle and two authors
+    void testGetBookDetailsAsString_ValidBook_EmptySubtitle_TwoAuthors() {
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
 
         String result = bookUtils.getBookDetailsAsString(
@@ -205,8 +192,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsString_ValidBook_EmptySubtitle_ManyAuthors() {
-        // Valid input with empty subtitle and many authors
+    void testGetBookDetailsAsString_ValidBook_EmptySubtitle_ManyAuthors() {
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
 
         String result = bookUtils.getBookDetailsAsString(
@@ -220,8 +206,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsString_ValidBook_NullSubtitle_AnAuthor() {
-        // Valid input with null subtitle and an author
+    void testGetBookDetailsAsString_ValidBook_NullSubtitle_AnAuthor() {
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
 
         String result = bookUtils.getBookDetailsAsString(
@@ -233,8 +218,8 @@ public class getBookDetailsAsStringTest {
         assertEquals("Title by Author (2025)", result);
     }
     @Test
-    void testgetBookDetailsAsString_ValidBook_NullSubtitle_TwoAuthors() {
-        // Valid input with null subtitle and two authors
+    void testGetBookDetailsAsString_ValidBook_NullSubtitle_TwoAuthors() {
+
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
 
         String result = bookUtils.getBookDetailsAsString(
@@ -247,8 +232,8 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsString_ValidBook_NullSubtitle_ManyAuthors() {
-        // Valid input with null subtitle and many authors
+    void testGetBookDetailsAsString_ValidBook_NullSubtitle_ManyAuthors() {
+
         when(mockBookRepository.isAvailable("Valid Book")).thenReturn(true);
 
         String result = bookUtils.getBookDetailsAsString(
@@ -261,8 +246,7 @@ public class getBookDetailsAsStringTest {
     }
 
     @Test
-    void testgetBookDetailsAsString_InvalidBook() {
-        // Invalid input with invalid title
+    void testGetBookDetailsAsString_InvalidBook() {
 
         when(mockBookRepository.isAvailable("Invalid Book")).thenReturn(false);
 

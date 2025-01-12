@@ -47,7 +47,7 @@ public class TestGetBookDetailsAsString {
 
     }
     @Test
-    void testGetBookDetailsAsStringBook_Title_WithOnlyWhitespace() {
+    void testGetBookDetailsAsStringBook_Title_WithOnlyWhiteSpace() {
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 " ",
@@ -82,7 +82,7 @@ public class TestGetBookDetailsAsString {
 
     }
     @Test
-    void testGetBookDetailsAsStringBook_Author_WithOnlyWhitespace() {
+    void testGetBookDetailsAsStringBook_Author_WithOnlyWhiteSpace() {
 
         assertThrows(IllegalArgumentException.class, () -> bookUtils.getBookDetailsAsString(
                 "Title",

@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "94caaa12-1d1b-43e2-b00d-46335356f0c0",
+		"name": "Bibliotech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39738405"
+	},
+	"item": [
+		{
+			"name": "/books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is a valid JSON\", function () {\r",
+							"    pm.response.to.have.jsonBody();\r",
+							"});\r",
+							"\r",
+							"const isbn = \"ISBN:9780261103573\";\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Title matches expected value\", function () {\r",
+							"    pm.expect(jsonData[isbn].title).to.eql(\"The Fellowship of the Ring\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Subtitle matches expected value\", function () {\r",
+							"    pm.expect(jsonData[isbn].subtitle).to.eql(\"The Lord of the Rings, Part I\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Author name matches expected value\", function () {\r",
+							"    pm.expect(jsonData[isbn].authors[0].name).to.eql(\"J.R.R. Tolkien\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Author URL matches expected value\", function () {\r",
+							"    pm.expect(jsonData[isbn].authors[0].url).to.eql(\"https://openlibrary.org/authors/OL26320A/J.R.R._Tolkien\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"console.log(\"Full Response: \", jsonData);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://openlibrary.org/api/books?bibkeys=ISBN:{{ISBN}}&format=json&jscmd=data",
+					"protocol": "https",
+					"host": [
+						"openlibrary",
+						"org"
+					],
+					"path": [
+						"api",
+						"books"
+					],
+					"query": [
+						{
+							"key": "bibkeys",
+							"value": "ISBN:{{ISBN}}"
+						},
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "jscmd",
+							"value": "data"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

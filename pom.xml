@@ -47,7 +47,7 @@
             <version>1.7.32</version>
         </dependency>
 
-        <!--RESTASSURED-->
+        <!--REST ASSURED-->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -61,13 +61,6 @@
             <artifactId>json-path</artifactId>
             <version>5.4.0</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- FAKER-->
-        <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
         </dependency>
 
         <!-- HAMCREST -->
@@ -92,13 +85,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.15.2</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- REPORTS -->
-        <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>5.0.9</version>
         </dependency>
 
     </dependencies>
